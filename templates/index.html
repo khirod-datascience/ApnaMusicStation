@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Apna Music Station</title>
+    <style>
+        #playlist{
+            list-style: none;
+        }
+        
+    </style>
+</head>
+<body style="background-color: #0665a2; max-width:100%;height:auto;">
+
+    <div style="padding: 100px 0;text-align: center;">
+    <div class="container-fluid"  style="max-width:100%;height:auto;">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-4">
+                    </div>
+                    <div class="col-md-4" >
+                        <div class="card" >
+                            <h3 class="card-header" style="color: rgb(246, 245, 250);">
+                                Apna Music Station
+                            </h3>
+                            <div class="card-body">
+                                <p class="card-text">
+                                    <audio src="" controls id="audioPlayer"  >
+                                        Sorry, your browser doesn't support html5!
+                                    </audio>
+                                    <ul id="playlist">
+                                        {% for song in products %}
+                                        <li><a href="{{song.Link}}"></a></li>
+                                        {% endfor %}
+                                    </ul>
+                                </p>
+                            </div>
+                            <div class="card-footer" >
+                                <a href="#" onclick="playlist.prevTrack();"><img src="static/previous.jpg" alt="previous" width="50" height="60"  style="padding-right: 10px;"></a>
+                                <a href="#" onclick="playlist.toggleShuffle();"><img src="static/shuffle.png" alt="shuffle" width="50" height="60" style="padding-right: 10px;" ></a>
+                                <a href="#" onclick="playlist.nextTrack();"><img src="static/forward.png" alt="forward" width="50" height="60" style="padding-right: 10px;"></a>
+    
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <img src="static/music.gif"  style="max-width:100%;height:auto;">
+
+    
+        
+    <!-- <audio src="" controls id="audioPlayer"  >
+        Sorry, your browser doesn't support html5!
+    </audio>
+    <ul id="playlist">
+        {% for song in products %}
+        <li><a href="{{song.Link}}"></a></li>
+        {% endfor %}
+    </ul>
+    <a href="#" onclick="playlist.prevTrack();">Prev Track</a>
+    <a href="#" onclick="playlist.nextTrack();">Next Track</a>
+    <a href="#" onclick="playlist.toggleShuffle();">Toggle Shuffle</a> -->
+
+    <!-- {% for product in products %}
+        {{product.Title}}
+    {% endfor %} -->
+
+</div>
+
+
+
+    <script src="https://code.jquery.com/jquery-2.2.0.js"></script>
+    <script >
+
+class AudioPlaylist{
+    randomizeOrder(){
+        for (var i = this.trackOrder.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var temp = this.trackOrder[i];
+            this.trackOrder[i] = this.trackOrder[j];
+            this.trackOrder[j] = temp;
+        }
+        return this.trackOrder;
+    }
+    setTrack(arrayPos){
+    
+        var liPos = this.trackOrder[arrayPos]; // convert array index to html index
+        this.player.src = $("#"+this.playlistId+ " li a").eq(liPos).attr("href");
+        $("."+this.currentClass).removeClass(this.currentClass);
+        $("#"+this.playlistId+ " li").eq(liPos).addClass(this.currentClass);
+        this.trackPos = arrayPos; // update based on array index position
+    }
+    prevTrack(){
+        if(this.trackPos == 0)
+            this.setTrack(0);
+        else
+            this.setTrack(this.trackPos - 1);
+        this.player.play();
+    }
+    nextTrack(){
+        // if track isn't the last track in array of tracks, go to next track
+        if(this.trackPos < this.length - 1)
+            this.setTrack(this.trackPos+1);
+        else{
+            if(this.shuffle)
+                this.randomizeOrder();
+            this.setTrack(0);
+        }
+        this.player.play();
+            
+    }
+    setLoop(val){
+        if(val === true)
+            this.loop = true;
+        else
+            this.loop = false;
+        return this.loop;
+    }
+    setShuffle(val){
+        if(val == this.shuffle) // if no change
+            return val;
+        else{
+            if(val === true){
+                this.randomizeOrder();
+                this.shuffle = true;
+            }
+            else{
+                this.shuffle = false;
+                // empty track array, fill array with indexs in order
+                this.trackOrder = [];
+                for(var i = 0; i < this.length; i++){
+                    this.trackOrder.push(i);
+                }
+                
+                // jump array to track position of currently playing track
+                this.trackPos =  this.trackOrder.indexOf($("."+this.currentClass).index());
+            }
+            return this.shuffle;
+        }
+    }
+    toggleShuffle(){
+        if(this.shuffle === true)
+            this.setShuffle(false);
+        else
+            this.setShuffle(true);
+        return this.shuffle;
+    }
+    toggleLoop(){
+        if(this.loop === true)
+            this.setLoop(false);
+        else
+            this.setLoop(true);
+        return this.loop;
+    }
+    constructor(config = {} ){
+        
+        /***
+        *
+        *       setting defaults, and initialzing player 
+        *
+        */
+        
+        var classObj = this; // store scope for event listeners
+        this.shuffle = (config.shuffle === true) ? true : false;
+        this.playerId = (config.playerId) ? config.playerId : "audioPlayer";
+        this.playlistId = (config.playlistId) ? config.playlistId : "playlist";
+        this.currentClass = (config.currentClass) ? config.currentClass : "current-song"
+        this.length = $("#"+this.playlistId+" li").length; 
+        this.player = $("#"+this.playerId)[0];
+        this.autoplay = (config.autoplay === true || this.player.autoplay) ? true : false;
+        this.loop = (config.loop === true) ? true : false;
+        this.trackPos = 0;
+        this.trackOrder = [];
+        for(var i = 0; i < this.length; i++){
+            this.trackOrder.push(i);
+        }
+        
+        if(this.shuffle)
+            this.randomizeOrder();
+        
+        this.setTrack(this.trackPos);
+        if(this.autoplay)
+            this.player.play();
+        
+         /***
+        *
+        *       handle link clicks
+        *
+        */
+        $("#"+this.playlistId+" li a ").click(function(e){
+            e.preventDefault();
+            // set track based on index of 
+            classObj.setTrack(classObj.trackOrder.indexOf($(this).parent().index()));
+            classObj.player.play();
+        });
+        
+         /***
+        *
+        *       handle end of track
+        *
+        */
+        
+        this.player.addEventListener("ended", function(){
+            // if last track ended
+            if(classObj.trackPos < classObj.length - 1){
+                classObj.setTrack(classObj.trackPos+1);
+                classObj.player.play();
+            }
+            else{
+                if(classObj.loop){
+                    if(classObj.shuffle)
+                        classObj.randomizeOrder();
+                    classObj.setTrack(0);
+                    classObj.player.play();
+                }
+            }
+        });
+        
+    }
+}
+
+
+
+
+    </script>
+    <script>
+        
+        /*
+    Default constructor configuration:
+        autoplay: false,
+        shuffle: false,
+        loop: false,
+        playerId: "audioPlayer",
+        playlistId: "playlist",
+        currentClass: "current-song"
+        
+        
+*/
+        
+        // loads the audio player
+        var config = {
+          autoplay: true, 
+            loop: true,
+            shuffle: true
+        };
+        var playlist = new AudioPlaylist();
+        
+    </script>
+</body>
+</html>
