@@ -6,13 +6,12 @@ from .models import musiclist
 def index(request):
     
     songs=musiclist.objects.all()
-    print(songs)
+    #print(songs)
     p=len(songs)
     products=list(musiclist.objects.all())
     products = random.sample(products, p)
 
     out1={'songs':songs,
-            'songlist':songlist,
             'products':products}
     return render(request,'index.html',out1)
 
