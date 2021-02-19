@@ -15,8 +15,8 @@
         Sorry, your browser doesn't support html5!
     </audio>
     <ul id="playlist">
-        {% for f in fl %}
-        <li class="current-song"><a href="{{f}}"></a></li>
+        {% for song in products %}
+        <li class="current-song"><a href="{{song.Link}}"></a> {{song.Title}}</li>
         {% endfor %}
     </ul>
     <script src="https://code.jquery.com/jquery-2.2.0.js"></script>
