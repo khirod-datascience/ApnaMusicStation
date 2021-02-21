@@ -39,9 +39,9 @@
     list-style: none;
 }
 div.ex3 {
-  background-color: rgb(19, 2, 2);
-  width: 250px;
-  height: 500px;
+  background-color: rgb(22 6 6);
+  width: 304px;
+  height: 277px;
   overflow: auto;
   max-width:100%;
 }
@@ -127,7 +127,7 @@ footer {
     </div> -->
     <div  >
     
-<div  class="center" style="border: 2px solid red; width: 327px; height: 500px; border-radius: 7%; overflow: auto; background-color: rgb(22, 6, 6);">
+<div  class="center" style="border: 2px solid red; width: 327px; height: 500px; border-radius: 7%;  background-color: rgb(22, 6, 6);">
     <div class="card" style="text-align: center;">
         <h3 class="card-header" style="color: rgb(246, 245, 250); ">
             Apna Music Station
@@ -144,23 +144,27 @@ footer {
                 <a href="#" onclick="playlist.nextTrack();"><img src="static/forward.png" alt="forward" width="40" height="30" style="padding-right: 10px;"></a>
             </div>
             <br>
-                <ul id="playlist" style="text-align: left;" >
-                    {% for song in products %}
-                          
-                    <li ><a href="{{song.Link}}" >{{song.Title}} </a></li>
-                    {% endfor %}
-                </ul>
+            
+               
+
             </p>
         </div>
 
-        <div class="card-footer" >
+        <div class="card-footer"  >
            
             
         </div>
         
     </div>
-  
+    <div class="ex3" style="text-align: left;" >
+        <ul id="playlist"  >
+            {% for song in products %}
+                  
+            <li ><a href="{{song.Link}}" >{{song.Title}} </a></li>
+            {% endfor %}
+        </ul>
     </div>
+    
     
     </div></div></div>
     <div  style="max-width:100%;height:auto; text-align: center;">
