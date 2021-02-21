@@ -13,7 +13,7 @@ def index(request):
 
     out1={'songs':songs,
             'products':products}
-    return render(request,'index.html',out1)
+    return render(request,'index1.html',out1)
 
 
 

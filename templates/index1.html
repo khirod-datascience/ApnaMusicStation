@@ -9,6 +9,32 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <title>Apna Music Station</title>
     <style>
+
+
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: right;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
 #playlist{
     list-style: none;
 }
@@ -54,69 +80,105 @@ div.ex3 {
     background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
   color: white;
 }
+.center {
+  margin: auto;
+  width: 60%;
+  border: 3px solid #73AD21;
+  padding: 10px;
+}
+.division{
+  width:33%;
+  height:100px;
+  float:left;
+  
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #3a00ff5e;
+  color: white;
+  text-align: center;
+}
     </style>
 </head>
 <body style="background-color: black; max-width:100%;height:auto;">
-<br><br>
+
+    <div class="topnav">
+       
+    <a class="active" href="#contact" >Contact</a>
+    <a href="#about" >About Me</a>
+
+      </div>
+
+<div class="container"  style=" max-width:100%;height:auto;">
+    <div class="row">
+    <!-- <div class="division" style="text-align: center;">
+        <br><br><br><br><br><br>
+        <br><br><br>
 
 
-<div class="row">
-<div class="col-sm-4" style=" padding: 14px 16px;text-align: center;">
-    <a href="#contact" style="border: 2px solid red;border-radius: 25px;padding: 8px 9px;font-size: 18px;background-color: #5b75e0;color: black;">Contact</a>
-    <a href="#about" style="border: 2px solid red;border-radius: 25px;padding: 8px 9px;font-size: 18px;background-color: #5b75e0;color: black;">About Me</a>
-
-</div>
-<div class="col-sm-4" style="text-align: center; ">
+ <div class="col-sm-4" style="text-align: center; ">
     <h3 style="color: honeydew;">choose your songs as your mood</h3>
     <a href="#" ><img src="static/lovemood.jpg" alt="Romance" width="50" height="40"  style="padding-right: 10px; "></a>
     <a href="#" ><img src="static/bhaktimood.jpg" alt="Bhakti" width="50" height="40"  style="padding-right: 10px; "></a>
 
-</div>
-
-</div>
-<br><br>
-<br>
-
-    <!-- <div style="padding: 90px 0;"> -->
-    <!-- <div class="container"  style="max-width:100%;height:auto;"> -->
-        <div class="row">
-        <div class="col-sm-4">
-                        
-        </div>
-        <div class="col-sm-4" style="text-align: center;" >
-            <div class="card" >
-                <h3 class="card-header" style="color: rgb(246, 245, 250);">
-                    Apna Music Station
-                </h3>
-                <br><br>
-                <div class="card-body">
-                    <p class="card-text">
-                        <audio src="" controls id="audioPlayer"  >
-                            Sorry, your browser doesn't support html5!
-                        </audio>
-                        <ul id="playlist">
-                            {% for song in products %}
-                                  
-                            <li><a href="{{song.Link}}"></a></li>
-                            {% endfor %}
-                        </ul>
-                    </p>
-                </div>
-
-                <div class="card-footer" >
-                    <a href="#" onclick="playlist.prevTrack();"><img src="static/previous.jpg" alt="previous" width="40" height="30"  style="padding-right: 10px;"></a>
-                    <a href="#" onclick="playlist.toggleShuffle();"><img src="static/shuffle.png" alt="shuffle" width="40" height="30" style="padding-right: 10px;" ></a>
-                    <a href="#" onclick="playlist.nextTrack();"><img src="static/forward.png" alt="forward" width="40" height="30" style="padding-right: 10px;"></a>
-
-                    <br><br><br><br>
-
-                    <img src="static/music.gif"  style="max-width:100%;height:auto;">
-                
-                </div>
+</div> -->
+  
+       
+    </div> -->
+    <div  >
+    
+<div  class="center" style="border: 2px solid red; width: 327px; height: 500px; border-radius: 7%; overflow: auto; background-color: rgb(22, 6, 6);">
+    <div class="card" style="text-align: center;">
+        <h3 class="card-header" style="color: rgb(246, 245, 250); ">
+            Apna Music Station
+        </h3>
+        <br>
+        <div class="card-body"  style="text-align: center;">
+            <p class="card-text"  >
+                <audio src="" controls id="audioPlayer"   >
+                    Sorry, your browser doesn't support html5!
+                </audio>
+                <div style="text-align: center;">
+                <a href="#" onclick="playlist.prevTrack();"><img src="static/backward.png" alt="previous" width="40" height="30"  style="padding-right: 10px;color: rgb(20, 20, 20); "></a>
+                <a href="#" onclick="playlist.toggleShuffle();"><img src="static/shuffle.png" alt="shuffle" width="40" height="30" style="padding-right: 10px;" ></a>
+                <a href="#" onclick="playlist.nextTrack();"><img src="static/forward.png" alt="forward" width="40" height="30" style="padding-right: 10px;"></a>
             </div>
-        </div> <div class="col-sm-4">
-            <br><br>      
-        </div></div>
+            <br>
+                <ul id="playlist" style="text-align: left;" >
+                    {% for song in products %}
+                          
+                    <li ><a href="{{song.Link}}" >{{song.Title}} </a></li>
+                    {% endfor %}
+                </ul>
+            </p>
+        </div>
+
+        <div class="card-footer" >
+            <br> <br>
+            
+        </div>
+        
+    </div>
+  
+    </div>
+    
+    </div></div></div>
+    <div  style="max-width:100%;height:auto; text-align: center;">
+
+    <img src="static/music.gif" >
+</div>
+    <div class="footer">
+        <h3 style="color: honeydew;">Find me on social</h3>
+            <a href="https://www.facebook.com/khirod.behera.33" class="fa fa-facebook"></a>
+            <a href="https://twitter.com/beherakhirod015" class="fa fa-twitter"></a>
+            <a href="https://www.instagram.com/khirod.bdk/" class="fa fa-instagram"></a>
+            
+      </div>
+
                     <!-- <div class="col-sm-4" >
                        
                         <div class="ex3">
@@ -125,26 +187,13 @@ div.ex3 {
                                 <li style="color: rgb(255, 255, 255);">{{song.Title}}</li>
                             {% endfor %}
                         </div> -->
-                       
+                        
 <!--                         
                    </div>
         </div>
     </div>
      -->
-        
-
-
-
-<div class="row">
-
-    <div class="col-sm-12" style="text-align: center;">
-        <h3 style="color: honeydew;">Find me on social</h3>
-        <a href="https://www.facebook.com/khirod.behera.33" class="fa fa-facebook"></a>
-        <a href="https://twitter.com/beherakhirod015" class="fa fa-twitter"></a>
-        <a href="https://www.instagram.com/khirod.bdk/" class="fa fa-instagram"></a>
-                    
-    </div>
-</div>
+    
     <script src="https://code.jquery.com/jquery-2.2.0.js"></script>
     <script >
 
