@@ -4,6 +4,6 @@ from mymusic import views
 
 urlpatterns = [
     path("", views.index, name="home"),
-    #path("music", views.music, name="music"),
+    path("video", views.video, name="video"),
     
 ]

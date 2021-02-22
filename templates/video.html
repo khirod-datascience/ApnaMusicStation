@@ -1,0 +1,121 @@
+<html>
+
+<style>
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: right;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+
+
+
+
+
+
+
+.form__label {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.2rem;
+  margin-left: 2rem;
+  margin-top: 0.7rem;
+  display: block;
+  transition: all 0.3s;
+  transform: translateY(0rem);
+}
+
+.form__input {
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+  font-size: 1.2rem;
+	margin: 0 auto;
+  padding: 1.5rem 2rem;
+  border-radius: 0.2rem;
+  background-color: rgb(255, 255, 255);
+  border: none;
+  width: 90%;
+  display: block;
+  border-bottom: 0.3rem solid transparent;
+  transition: all 0.3s;
+}
+
+.form__input:placeholder-shown + .form__label {
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transform: translateY(-4rem);
+  transform: translateY(-4rem);
+}
+
+
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.button2 {background-color: #008CBA;} /* Blue */
+
+
+</style>
+    <body style="background-color: black; max-width:100%;height:auto;">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+
+        <div class="topnav">
+       
+            <a  href="#contact" >Contact</a>
+            <a href="#about" >About Me</a>
+            <a class="active" href="/video" >video</a>
+            <a href="/" >Music</a>
+        
+              </div>
+        <br><br>
+        <!-- <iframe src="about:blank" name="myFrame" width="600" height="350" scrolling="auto" frameborder="1"></iframe> -->
+        <form action = "" method = "POST" enctype = "multipart/form-data"  style ="text-align:center;">
+            {% csrf_token %}
+            <div class="form__group">
+                <input type="text" class="form__input" id="URL" placeholder="Youtube URL" required=""  name="URL"/>
+                <label style="color: #ddd;" for="URL" class="form__label">Youtube Url </label>
+              </div>
+            <!-- <label for="URL" style="color: #ddd;"></label> 
+            <input id="URL" type="text" name="URL">  -->
+            <button class="button button2" type="submit">submit</button>
+            <!-- <input type="submit" value="OK">  -->
+        </form> 
+        <div style="text-align: center;">
+
+        <iframe  name="myFrame" width="420" height="345" src="{{url}}" allowfullscreen="allowfullscreen">
+        </div>
+        </iframe>
+        
+         <script>
+
+        </script>
+    </body>
+</html>

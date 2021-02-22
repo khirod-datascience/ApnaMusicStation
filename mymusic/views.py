@@ -16,6 +16,16 @@ def index(request):
     return render(request,'index1.html',out1)
 
 
+def video(request):
+        if request.method == 'POST':
+                url = request.POST['URL']
+                url=url.replace('watch?v=','embed/')
+                print(url)
+                out={'url':url}
+                return render(request,'video.html',out) 
+        return render(request,'video.html') 
+
+
 
 
 

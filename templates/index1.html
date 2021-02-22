@@ -104,8 +104,10 @@ footer {
 
     <div class="topnav">
        
-    <a class="active" href="#contact" >Contact</a>
+    <a  href="#contact" >Contact</a>
     <a href="#about" >About Me</a>
+    <a href="/video" >video</a>
+    <a class="active" href="/" >Music</a>
 
       </div>
 
@@ -151,26 +153,26 @@ footer {
         </div>
 
         <div class="card-footer"  >
-           
+            <div class="ex3" style="text-align: left;" >
+                <ul id="playlist"  >
+                    {% for song in products %}
+                          
+                    <li ><a href="{{song.Link}}" >{{song.Title}} </a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            
             
         </div>
-        
-    </div>
-    <div class="ex3" style="text-align: left;" >
-        <ul id="playlist"  >
-            {% for song in products %}
-                  
-            <li ><a href="{{song.Link}}" >{{song.Title}} </a></li>
-            {% endfor %}
-        </ul>
-    </div>
-    
-    
     </div></div></div>
-    <div  style="max-width:100%;height:auto; text-align: center;">
+    <div class="center"  style=" text-align: center;">
 
-    <img src="static/music.gif" >
-</div> <br> <br>
+    <img src="static/music.gif" style="width: 100%;" >
+</div>
+    </div>
+    
+    
+   <br> <br>
     <footer>
         <h3 style="color: honeydew;">Find me on social</h3>
             <a href="https://www.facebook.com/khirod.behera.33" class="fa fa-facebook"></a>
