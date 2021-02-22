@@ -98,14 +98,58 @@ footer {
   background-color: #3a00ff5e;
   color: white;
 }
+
+
+
+
+
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 80px;
+  border: 1px solid #888;
+  width: 74%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
     </style>
 </head>
 <body style="background-color: black; max-width:100%;height:auto;">
 
     <div class="topnav">
        
-    <a  href="#contact" >Contact</a>
-    <a href="#about" >About Me</a>
+    <a id="myBtn"  href="#contact" >Contact</a>
+    <a href="https://khirod-behera.herokuapp.com/#about" >About Me</a>
     <a href="/video" >video</a>
     <a class="active" href="/" >Music</a>
 
@@ -126,8 +170,8 @@ footer {
 </div> -->
   
        
-    </div> -->
-    <div  >
+    </div>
+    <div  ><br>
     
 <div  class="center" style="border: 2px solid red; width: 327px; height: 500px; border-radius: 7%;  background-color: rgb(22, 6, 6);">
     <div class="card" style="text-align: center;">
@@ -196,6 +240,119 @@ footer {
     </div>
      -->
     
+
+     <script type="text/javascript">var submitted=false;</script>
+    
+     <!--Update the URL for thank you page on form submit -->
+     <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"      
+     onload="if(submitted) {window.location='/';}"></iframe> 
+     
+
+     <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          
+      <form action = "https://docs.google.com/forms/u/0/d/e/1FAIpQLScqox3z2Js3wlXdvA8tyVvCyDe_acP-SGYafgCvERX9m7a4NA/formResponse" method = "POST" enctype = "multipart/form-data"  style ="text-align:center;" target="hidden_iframe" onsubmit="submitted=true ">
+        {% csrf_token %}
+        <div class="row">
+            <h4><b>Please provide your feedback/query and details to contact you further.</b></h4> 
+            <div class="col-sm-12 form-group">
+                <label>How do you rate your overall experience?</label>
+                <p>
+                    <label class="radio-inline">
+                        <input type="radio" name="entry.2031934748_sentinel" id="radio_experience" value="bad" >
+                        Bad 
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="entry.2031934748_sentinel" id="radio_experience" value="average" >
+                        Average 
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="entry.2031934748_sentinel" id="radio_experience" value="good" >
+                        Good 
+                    </label>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 form-group">
+                <label for="comments"> Comments:</label>
+                <textarea class="form-control" type="textarea" name="entry.839337160" id="comments" placeholder="Your Comments" maxlength="6000" rows="7"></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 form-group">
+                <label for="name"> Your Name:</label>
+                <input type="text" class="form-control" id="name" name="entry.2005620554" required>
+            </div>
+            <div class="col-sm-6 form-group">
+                <label for="email"> Email:</label>
+                <input type="email" class="form-control" id="email" name="entry.1045781291" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 form-group">
+                <button type="submit" class="btn btn-lg btn-warning btn-block" >Post </button>
+            </div>
+        </div>
+      </form> 
+      
+        </div>
+      
+      </div>
+
+
+
+
+      <div class="container">
+        <div class="imagebg"></div>
+        <div class="row " style="margin-top: 50px">
+            <div class="col-md-6 col-md-offset-3 form-container">
+                <h2>Feedback</h2> 
+                <p> Please provide your feedback below: </p>
+                <form role="form" method="post" id="reused_form">
+                    
+                </form>
+               </div>
+        </div>
+    </div>
+      
+
+
+
+
+
+
+      <script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
+        
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
+        
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+        
+        // When the user clicks the button, open the modal 
+        btn.onclick = function() {
+          modal.style.display = "block";
+        }
+        
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+          modal.style.display = "none";
+        }
+        
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        }
+        </script>
+          
     <script src="https://code.jquery.com/jquery-2.2.0.js"></script>
     <script >
 
