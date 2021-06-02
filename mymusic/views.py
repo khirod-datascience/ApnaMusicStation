@@ -109,7 +109,7 @@ def aloginPage(request):
 
 def logoutUser(request):
 	logout(request)
-	return redirect('login')
+	return redirect('alogin')
 
 
 
