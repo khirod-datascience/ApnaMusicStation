@@ -10,7 +10,7 @@ urlpatterns = [
     path("anu", views.aindex, name="aindex"),
     path('aimage/', views.aimage, name="aimage"),
     path('alogin/', views.aloginPage, name="alogin"),  
-    
+    path('logout/', views.logoutUser, name="logout"),
 ]
 
 
