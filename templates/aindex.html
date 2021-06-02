@@ -75,7 +75,7 @@ body {
           {% for message in amessagelist %}
           <div id='refresh' style="background-color: #bdd1d6;">
             <h4 style="color:blueviolet ; display:inline;"><b>{{message.name}} &nbsp; &nbsp; </b></h4>
-            <h5 style="display:inline;">{{message.date}}{{message.time}}</h5>
+            <h5 style="display:inline;">{{message.date}} &nbsp;{{message.time}}</h5>
             <p style="color:black">{{message.message}}</p>
           </div>
           {% endfor %}
