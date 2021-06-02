@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+
+  <title>Love you my baby</title>
+  <style>
+
+body {
+	background: linear-gradient(-45deg, #d43a6e,  #1f43e2);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+    div.msg_bbl {
+      background-color: #ddd;
+      padding: 5px 10px;
+      border-radius: 10px;
+      color: #555;
+      margin-bottom: 5px;
+    }
+
+    .box {
+      background-color: lightgrey;
+      width: 100%;
+      border: 5px solid green;
+      padding: 7px;
+
+    }
+  </style>
+</head>
+
+<body >
+
+  <div class="container-fluid" style="background-color: darkblue;">
+
+    <div class="col-md-10">
+      <h2 style="text-align: center;color: white; ">This is for US</h2>
+    </div>
+    <div class="col-md-2">
+      <div style="text-align: right;"><a style="background-color:#B03A2E; padding: 5px 14px; "
+          class="hello-msg btn btn-primary btn-lg" href="{% url 'logout' %}">Logout</a>
+      </div>
+    </div>
+  </div><br>
+
+
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-md-6" style="height:585px;border: 7px solid blue ;">
+        Hello {{request.user}}
+
+        <br>
+        <div class="no_message"  style="height:500px;border: 2px solid blue ;overflow: auto; " >
+          {% for message in amessagelist %}
+          <div id='refresh' style="background-color: #bdd1d6;">
+            <h4 style="color:blueviolet ; display:inline;"><b>{{message.name}} &nbsp; &nbsp; </b></h4>
+            <h5 style="display:inline;">{{message.date}}{{message.time}}</h5>
+            <p style="color:black">{{message.message}}</p>
+          </div>
+          {% endfor %}
+        </div>
+
+        <form action="anu" method="POST">
+          {% csrf_token %}
+          <div class="col-sm-9">
+            <div style="padding-top: 5px;"></div>
+            <input type="text" class="message form-control" placeholder="Enter your message" name='message'>
+          </div>
+          <div class="col-sm-3">
+            <div style="padding-top: 5px;"></div>
+            <button type="submit" class=" btn-block"
+              style="border-radius:30px ;color: #f9f9f9;background-color: #9713a2;height: 35px;}"><span
+                class="glyphicon glyphicon-send"></span> Send</button>
+          </div>
+
+        </form>
+      </div>
+      <div class="col-md-6">
+
+        <form class="allign" action="aimage/" method="POST" enctype="multipart/form-data" style="text-align:center;">
+
+          {% csrf_token %}
+          <h3 style="text-align: center;"><u><b>Please upload your Image</b></u></h3><br>
+          <br>
+          <div>
+            <input style="margin: 0 auto; width:100%; display:inline;" type="file" name="file1" />
+            <input id="file"
+              style="text-align:center;display:inline; background-color:#963596;border-radius: 50px ;width:40%;padding: 5px 14px;"
+              class="btn btn-primary btn-lg" type="submit" />
+          </div>
+        </form>
+
+        <div class="box">
+
+          {% for image in aimagelist %}
+
+          <img src="media/{{image.image}}" style="width:200px;height:200px;">
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript">
+      setInterval("my_function();",5000); 
+      function my_function(){
+        $('#refresh').load(location.href + " #refresh");
+      }
+    </script>
+</body>
+
+</html>

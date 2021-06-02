@@ -13,3 +13,21 @@ def __str__(self):
   
 class Meta: 
     db_table = 'mymusic'
+
+
+
+class aMessages(models.Model):
+    date = models.DateField(auto_now=True)
+    time = models.TimeField(auto_now=True)
+    message = models.CharField(max_length=500)
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.message
+
+class aImages(models.Model):
+    name = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='images')
+
+    def __str__(self):
+        return self.name
