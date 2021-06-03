@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Upload image</title>
+
+<style>
+    body {
+	background: linear-gradient(-45deg, #b827bd,  #1f43e2);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+.box {
+      background-color: lightgrey;
+      width: 100%;
+      border: 5px solid green;
+      padding: 7px;
+
+    }
+</style>
+</head>
+<body>
+    <br>
+    <br>
+<div class="container">
+    <h3 style="text-align: center;"><u><b>Please upload your Image</b></u></h3>
+    <div style="text-align: center;"><a style="background-color:#B03A2E; padding: 5px 14px; "
+        class="hello-msg btn btn-primary btn-lg" href="/">Home</a>
+    </div><br>
+    <div class='col-md-2'>
+        
+    </div>
+    <div class='col-md-8'>
+    <div class="box">
+    <form class="allign"  method="POST" enctype="multipart/form-data" style="text-align:center;">
+
+        {% csrf_token %}
+      
+        <br>
+        
+         <h3><input style="margin: 0 auto; width:100%; display:inline;" type="file" name="file1" /></h3> 
+          <input id="file"
+            style="text-align:center;display:inline; background-color:#963596;border-radius: 50px ;width:40%;padding: 5px 14px;"
+            class="btn btn-primary btn-lg" type="submit" />
+        
+      </form></div></div></div>
+      <div class='col-md-2'></div>
+    
+</body>
+</html>
