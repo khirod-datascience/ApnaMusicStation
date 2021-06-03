@@ -52,17 +52,21 @@ body {
 
   <div class="container-fluid" style="background-color: darkblue;">
 
-    <div class="col-md-10">
+    <div class='row'>
+    <div class="col-md-2">
+      <div style="text-align: right;"><a style="background-color:#B03A2E; padding: 5px 14px; "
+          class="hello-msg btn btn-primary btn-lg" href="{% url 'image' %}">upload image</a>
+      </div></div>
+    <div class="col-md-8">
       <h2 style="text-align: center;color: white; ">This is for US</h2>
     </div>
     <div class="col-md-2">
       <div style="text-align: right;"><a style="background-color:#B03A2E; padding: 5px 14px; "
           class="hello-msg btn btn-primary btn-lg" href="{% url 'logout' %}">Logout</a>
       </div>
-    </div>
+    </div></div>
   </div><br>
-
-
+	
   <div class="container">
 
     <div class="row">
@@ -98,18 +102,6 @@ body {
       </div>
       <div class="col-md-6">
 
-        <form class="allign" action="aimage/" method="POST" enctype="multipart/form-data" style="text-align:center;">
-
-          {% csrf_token %}
-          <h3 style="text-align: center;"><u><b>Please upload your Image</b></u></h3><br>
-          <br>
-          <div>
-            <input style="margin: 0 auto; width:100%; display:inline;" type="file" name="file1" />
-            <input id="file"
-              style="text-align:center;display:inline; background-color:#963596;border-radius: 50px ;width:40%;padding: 5px 14px;"
-              class="btn btn-primary btn-lg" type="submit" />
-          </div>
-        </form>
 
         <div class="box">
 
