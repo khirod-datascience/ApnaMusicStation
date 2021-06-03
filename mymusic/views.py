@@ -72,7 +72,7 @@ def aimage(request):
         return redirect('aindex')
 
    
-    return render(request,'index.html')
+    return render(request,'image.html')
     # imagelist=Images.objects.all()
     # # files=[]
     # # dir='media'
